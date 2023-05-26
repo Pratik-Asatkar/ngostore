@@ -35,7 +35,8 @@ def custom_expired_token_response(jwt_header, jwt_payload):
 @app.route('/')
 def home():
     featured = product_db.get_products("featured")
-    return render_template('home.html', featured=featured)
+    latest = product_db.get_products("latest") 
+    return render_template('home.html', featured=featured, latest=latest)
 
 
 @app.route('/profile')

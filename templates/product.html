@@ -1,31 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends "base.html"%} {%block content%}
+<!-- Page Header Start -->
+<div class="container-fluid bg-secondary mb-5">
+  <div
+    class="d-flex flex-column align-items-center justify-content-center"
+    style="min-height: 300px"
+  >
+    <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop Detail</h1>
+    <div class="d-inline-flex">
+      <p class="m-0"><a href="">Home</a></p>
+      <p class="m-0 px-2">-</p>
+      <p class="m-0">Shop Detail</p>
+    </div>
+  </div>
+</div>
+<!-- Page Header End -->
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-</head>
-
-<body class="bg-gray-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="flex flex-col md:flex-row">
-      <div class="md:w-1/2 mb-4 md:mb-0">
-        <img src="{{ product['img'] }}" alt="{{ product['name'] }}" class="w-full rounded-lg" />
+<!-- Shop Detail Start -->
+<div class="container-fluid py-5">
+  <div class="row px-xl-5">
+    <div class="col-lg-5 pb-5">
+      <div id="product-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner border">
+          <div class="carousel-item active">
+            <img
+              class="w-100 h-100"
+              src="{{ product['img'] }}"
+              alt="{{ product['name'] }}"
+            />
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#product-carousel"
+          data-slide="prev"
+        >
+          <i class="fa fa-2x fa-angle-left text-dark"></i>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#product-carousel"
+          data-slide="next"
+        >
+          <i class="fa fa-2x fa-angle-right text-dark"></i>
+        </a>
       </div>
-      <div class="md:w-1/2 md:pl-8">
-        <h2 class="text-3xl font-bold mb-4">{{ product['name'] }}</h2>
-        <p class="text-gray-700 mb-4">
-          {{ product['desc'] }}
-        </p>
-        <p class="text-gray-700 mb-4">
-          <span class="font-medium">Price:</span> ₹{{ product['price'] }}
-        </p>
-        <a href="{{ url_for('cart.add_product', productid=product['_id']) }}"><button type="button" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Add to cart</button></a>
+    </div>
+
+    <div class="col-lg-7 pb-5">
+      <h3 class="font-weight-semi-bold">{{ product['name'] }}</h3>
+      <div class="d-flex mb-3">
+        <div class="text-primary mr-2">
+          <small class="fas fa-star"></small>
+          <small class="fas fa-star"></small>
+          <small class="fas fa-star"></small>
+          <small class="fas fa-star-half-alt"></small>
+          <small class="far fa-star"></small>
+        </div>
+        <small class="pt-1">(50 Reviews)</small>
+      </div>
+      <h3 class="font-weight-semi-bold mb-4">
+        Quantity: {{ product['price'] }}
+      </h3>
+      <p class="mb-4">{{ product['desc'] }}</p>
+      <!-- <div class="d-flex mb-3">
+                    <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
+                    <form>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-1" name="size">
+                            <label class="custom-control-label" for="size-1">XS</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-2" name="size">
+                            <label class="custom-control-label" for="size-2">S</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-3" name="size">
+                            <label class="custom-control-label" for="size-3">M</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-4" name="size">
+                            <label class="custom-control-label" for="size-4">L</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-5" name="size">
+                            <label class="custom-control-label" for="size-5">XL</label>
+                        </div>
+                    </form>
+                </div> -->
+      <!-- <div class="d-flex mb-4">
+                    <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
+                    <form>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-1" name="color">
+                            <label class="custom-control-label" for="color-1">Black</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-2" name="color">
+                            <label class="custom-control-label" for="color-2">White</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-3" name="color">
+                            <label class="custom-control-label" for="color-3">Red</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-4" name="color">
+                            <label class="custom-control-label" for="color-4">Blue</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-5" name="color">
+                            <label class="custom-control-label" for="color-5">Green</label>
+                        </div>
+                    </form>
+                </div> -->
+      <div class="d-flex align-items-center mb-4 pt-2">
+        <!-- <div class="input-group quantity mr-3" style="width: 130px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-minus" >
+                            <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control bg-secondary text-center" value="1">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-plus">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div> -->
+        <a href="{{ url_for('cart.add_product', productid=product['_id']) }}"
+          ><button class="btn btn-primary px-3">
+            <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+          </button></a
+        >
       </div>
     </div>
   </div>
-</body>
+</div>
+<!-- Shop Detail End -->
 
-</html>
+{%endblock%}
