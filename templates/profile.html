@@ -1,3 +1,35 @@
 {%extends "base.html"%} {%block content%}
-
+<section class="h-100 gradient-custom-2 pt-5" style="background-color: grey;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card">
+            <div class="card-body p-4 text-black">
+              <div class="mb-5">
+                <p class="lead fw-normal mb-1">About</p>
+                <div class="p-4" style="background-color: #f8f9fa;">
+                    <p><span class="font-medium">Name:</span> {{ user['name'] }}</p>
+                    <p><span class="font-medium">Email:</span> {{ user['email'] }}</p>
+                    <p><span class="font-medium">Address:</span> {{ user['address'] }}, {{ user['pincode'] }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-4 text-black">
+                <div class="mb-5">
+                  <p class="lead fw-normal mb-1">All Orders</p>
+                  {% for cart in user['previous_orders'] %}
+                  <div class="p-4" style="background-color: #f8f9fa;">
+                      <p><span class="font-medium">Order #:</span> {{ cart['cartid'] }}</p>
+                      <p><span class="font-medium">Date:</span> {{ cart['time'] }}</p>
+                      <p><span class="font-medium">Total:</span> ₹{{ cart['total'] }}</p>
+                      <p><span class="font-medium">Status:</span> Delivered</p>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {%endblock%}
